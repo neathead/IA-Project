@@ -9,7 +9,6 @@ import java.util.List;
 public class EightPuzzleProblem extends Problem<EightPuzzleState> {
     private EightPuzzleState goalState;
     
-
     public EightPuzzleProblem(EightPuzzleState initalState) {
         super(initalState, new ArrayList<Action>());
         actions.add(new ActionUp());
