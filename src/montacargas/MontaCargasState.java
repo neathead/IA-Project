@@ -167,4 +167,33 @@ class MontaCargasState extends State implements Cloneable {
         }
         return buffer.toString();
     }
+
+    double computeTilesDistance() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0) {
+                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
+                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
+                }
+            }
+        }
+        
+        return h;
+    }
+
+    double computeTilesOffPlace() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
+                    h++;
+                }
+            }
+        }
+        
+        return h;
+    }
 }
