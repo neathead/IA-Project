@@ -33,13 +33,13 @@ import searchmethods.SearchMethod;
 
 public class MainFrame extends JFrame {
 
-    private int[][] initialMatrix = {
-        {0, 0, 0, 0, 0, 0}, 
-        {0, 0, 2, 0, 0, 0}, 
-        {0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0}, 
-        {0, 0, 0, 0, 0, 0}, 
-        {0, 0, 0, 0, 0, 0},};
+    private int[][] initialMatrix = {{0, 0, 2, 0, 2, 0}, 
+                                     {0, 5, 0, 0, 7, 0},
+                                     {1, 5, 0, 3, 7, 10}, 
+                                     {0, 3, 0, 2, 7, 0},
+                                     {0, 3, 0, 0, 0, 0},
+                                     {0, 8, 8, 8, 8, 0}};
+
     private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
@@ -120,8 +120,8 @@ public class MainFrame extends JFrame {
     private void configureTabel(JTable table) {
         puzzleTableModel = new PuzzleTableModel(agent.getEnvironment());
         tablePuzzle.setModel(puzzleTableModel);
-        //tablePuzzle.setRowMargin(0);
-        //tablePuzzle.getColumnModel().setColumnMargin(0);
+        tablePuzzle.setRowMargin(0);
+        tablePuzzle.getColumnModel().setColumnMargin(0);
         table.setDefaultRenderer(Object.class, new PuzzleTileCellRenderer());
         for (int i = 0; i < table.getColumnCount(); i++) {
             table.getColumnModel().getColumn(i).setPreferredWidth(Properties.CELL_WIDTH);
@@ -170,11 +170,12 @@ public class MainFrame extends JFrame {
     }
 
     public void buttonSolve_ActionPerformed(ActionEvent e) {
-
+        
         SwingWorker worker = new SwingWorker<Solution, Void>() {
             public Solution doInBackground() {
                 textArea.setText("");
                 buttonStop.setEnabled(true);
+                buttonSolve.setEnabled(false);
                 try {
                     prepareSearchAlgorithm();
                     EightPuzzleProblem problem = new EightPuzzleProblem((EightPuzzleState) agent.getEnvironment().clone());

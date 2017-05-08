@@ -7,19 +7,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EightPuzzleProblem extends Problem<EightPuzzleState> {
-    private EightPuzzleState goalState;
-    
 
-    public EightPuzzleProblem(EightPuzzleState initalState) {
-        super(initalState, new ArrayList<Action>());
+
+
+    public EightPuzzleProblem(EightPuzzleState initialState) {
+        super(initialState, new ArrayList<Action>());
         actions.add(new ActionUp());
         actions.add(new ActionRight());
-        actions.add(new ActionLeft());
         actions.add(new ActionDown());
-        
-        this.goalState = new EightPuzzleState(EightPuzzleState.goalMatrix);
-    }
+        actions.add(new ActionLeft());
 
+       
+    }
+//alterar este metodo
     @Override
     public List<EightPuzzleState> executeActions(EightPuzzleState state) {
         List<EightPuzzleState> successors = new LinkedList<EightPuzzleState>();
@@ -33,17 +33,18 @@ public class EightPuzzleProblem extends Problem<EightPuzzleState> {
         return successors;
     }
 
+
+    //alterar este metodo
     @Override
     public boolean isGoal(EightPuzzleState state) {
-        return state.equals(goalState);
-    }
         
-    public EightPuzzleState getGoalState() {
-        return goalState;
+        return false;
+
     }
 
     @Override
     public double computePathCost(List<Action> path) {
         return path.size();
     }
+
 }
