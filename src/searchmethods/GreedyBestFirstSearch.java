@@ -7,7 +7,7 @@ public class GreedyBestFirstSearch extends InformedSearch {
 
     //f = h
     public void addSuccessorsToFrontier(List<State> successors, Node parent) {
-        //Todo
+        //TODO
     }
 
     @Override
