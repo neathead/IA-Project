@@ -65,7 +65,7 @@ public class MainFrame extends JFrame {
     private void jbInit() throws Exception {
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("Eight Puzzle");
+        this.setTitle("MONTA-CARGAS");
 
         JPanel contentPane = (JPanel) this.getContentPane();
         contentPane.setLayout(new BorderLayout());
