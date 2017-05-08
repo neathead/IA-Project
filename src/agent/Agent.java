@@ -5,7 +5,7 @@ import searchmethods.*;
 
 public class Agent<E extends State> {
 
-    protected E environment;
+    protected E environment; //E - representa o estado
     protected ArrayList<SearchMethod> searchMethods;
     protected SearchMethod searchMethod;
     protected ArrayList<Heuristic> heuristics;

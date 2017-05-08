@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EightPuzzleState extends State implements Cloneable {
-    //Apenas vou ter que saber se o carro esta a frente da porta
+
     static final int[][] goalMatrix = {{0, 1, 2},
                                        {3, 4, 5},
                                        {6, 7, 8}};
@@ -41,7 +41,7 @@ public class EightPuzzleState extends State implements Cloneable {
     }
 
     public boolean canMoveRight() {
-        return columnBlank != matrix.length - 1;
+        return columnBlank != matrix.length - 1 ;
     }
 
     public boolean canMoveDown() {
@@ -52,12 +52,6 @@ public class EightPuzzleState extends State implements Cloneable {
         return columnBlank != 0;
     }
 
-    /*
-     * In the next four methods we don't verify if the actions are valid.
-     * This is done in method executeActions in class EightPuzzleProblem.
-     * Doing the verification in these methods would imply that a clone of the
-     * state was created whether the operation could be executed or not.
-     */
     public void moveUp() {
         matrix[lineBlank][columnBlank] = matrix[--lineBlank][columnBlank];
         matrix[lineBlank][columnBlank] = 0;
