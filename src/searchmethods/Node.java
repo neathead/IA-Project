@@ -47,7 +47,7 @@ public class Node implements Comparable<Node> {
     }
 
     public int compareTo(Node other) {
-        return (f < other.f) ? -1 : (f == other.f) ? 0 : 1;// ordena por ordem crescente
+        return (f < other.f) ? -1 : (f == other.f) ? 0 : 1;
     }
     
     public boolean isCycle() {

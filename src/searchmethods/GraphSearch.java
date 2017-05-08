@@ -12,7 +12,7 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
 
     protected L frontier;
     protected Set<State> explored = new HashSet<State>();
-    protected Statistics statistics = new Statistics();
+    protected Statistics statistics = new Statistics();    
     protected boolean stopped;
 
     @Override
@@ -35,11 +35,12 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
         return failure
      */
     protected Solution graphSearch(Problem problem) {
+        statistics.reset();
         frontier.clear();
         explored.clear();
-        frontier.add(new Node(problem.getInitialState()));
+        frontier.add(new Node (problem.getInitalState()));
         
-        while (!frontier.isEmpty() && !stopped) {
+        while (!frontier.isEmpty()) {
             Node n = frontier.poll();
             if (problem.isGoal(n.getState())) {
                 return new Solution(problem, n);
@@ -47,8 +48,7 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
             explored.add(n.getState());
             List<State> sucessors = problem.executeActions(n.getState());
             addSuccessorsToFrontier(sucessors, n);
-            computeStatistics(sucessors.size()
-            );
+            computeStatistics(sucessors.size());
         }
         return null;
     }
@@ -60,8 +60,8 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
         statistics.numGeneratedNodes += successorsSize;
         statistics.maxFrontierSize = Math.max(statistics.maxFrontierSize, frontier.size());
     }
-
-    public Statistics getStatistics() {
+    
+    public Statistics getStatistics(){
         return statistics;
     }
 
@@ -73,3 +73,4 @@ public abstract class GraphSearch<L extends NodeCollection> implements SearchMet
         return stopped;
     }
 }
+    
