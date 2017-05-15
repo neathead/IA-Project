@@ -1,22 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package montacargas;
 
 import agent.Agent;
+import gui.Properties;
+import java.io.File;
+import java.io.IOException;
 
-/**
- *
- * @author luis
- */
 public class MontaCargasAgent extends Agent<MontaCargasState>{
-    protected MontaCargasState initialEnvironment; 
     
-    public MontaCargasAgent(MontaCargasState environment) {
-        super(environment);
-        initialEnvironment = (MontaCargasState) environment.clone();
+    static final int CAR = 1;
+    static final int DOOR = 10;
+    protected MontaCargasState initialEnvironment;    
+    
+    public MontaCargasAgent(MontaCargasState environemt) {
+        super(environemt);
+        initialEnvironment = (MontaCargasState) environemt.clone();
+        heuristics.add(new HeuristicTileDistance());
+        heuristics.add(new HeuristicTilesOutOfPlace());
+        heuristic = heuristics.get(0);
     }
-    
+            
+    public MontaCargasState resetEnvironment(){
+        environment = (MontaCargasState) initialEnvironment.clone();
+        return environment;
+    }
+                 
+    public MontaCargasState readInitialStateFromFile(File file) throws IOException {
+        java.util.Scanner scanner = new java.util.Scanner(file);
+
+        int tamanho = scanner.nextInt();
+        int[][] matrix = new int [tamanho][tamanho];
+        int doorY = tamanho/2;
+        
+        for (int i = 0; i < tamanho; i++) {
+            for (int j = 0; j < tamanho; j++) {
+                matrix[i][j] = scanner.nextInt();
+                if (matrix[i][j] == CAR) {
+                    doorY = i;
+                }
+            }
+            scanner.nextLine();
+        }
+        matrix[doorY][tamanho-1] = DOOR;
+        initialEnvironment = new MontaCargasState(matrix);
+        resetEnvironment();
+        return environment;
+    }
 }
