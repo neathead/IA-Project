@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package montacargas;
 
 import agent.Action;
@@ -10,24 +5,20 @@ import agent.State;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- *
- * @author luis
- */
-class MontaCargasState extends State implements Cloneable {
+public class MontaCargasState extends State implements Cloneable {
     //Apenas vou ter que saber se o carro esta a frente da porta
     static final int[][] goalMatrix = {{0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 1, 9},
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0}};
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 1, 9},
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 0, 0}};
     static final int[] linesfinalMatrix = {0, 0, 0, 1, 1, 1, 2, 2, 2};
     static final int[] colsfinalMatrix = {0, 1, 2, 0, 1, 2, 0, 1, 2};
     public static final int SIZE = 3;
     private int[][] matrix;
-    private int lineBlank;
-    private int columnBlank;
+    private int lineBlank;      //TODO: ?
+    private int columnBlank;    //TODO: ?
 
     public MontaCargasState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -166,5 +157,34 @@ class MontaCargasState extends State implements Cloneable {
             }
         }
         return buffer.toString();
+    }
+
+    double computeTilesDistance() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0) {
+                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
+                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
+                }
+            }
+        }
+        
+        return h;
+    }
+
+    double computeTilesOffPlace() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
+                    h++;
+                }
+            }
+        }
+        
+        return h;
     }
 }

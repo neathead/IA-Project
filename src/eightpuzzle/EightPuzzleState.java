@@ -41,7 +41,7 @@ public class EightPuzzleState extends State implements Cloneable {
     }
 
     public boolean canMoveRight() {
-        return columnBlank != matrix.length - 1 ;
+        return columnBlank != matrix.length - 1;
     }
 
     public boolean canMoveDown() {
@@ -52,6 +52,12 @@ public class EightPuzzleState extends State implements Cloneable {
         return columnBlank != 0;
     }
 
+    /*
+     * In the next four methods we don't verify if the actions are valid.
+     * This is done in method executeActions in class EightPuzzleProblem.
+     * Doing the verification in these methods would imply that a clone of the
+     * state was created whether the operation could be executed or not.
+     */
     public void moveUp() {
         matrix[lineBlank][columnBlank] = matrix[--lineBlank][columnBlank];
         matrix[lineBlank][columnBlank] = 0;
@@ -78,6 +84,35 @@ public class EightPuzzleState extends State implements Cloneable {
 
     public int getNumColumns() {
         return matrix[0].length;
+    }
+    
+    public double computeTilesOffPlace() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
+                    h++;
+                }
+            }
+        }
+        
+        return h;
+    }
+    
+    public double computeTilesDistance() {
+        double h = 0;
+        
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0) {
+                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
+                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
+                }
+            }
+        }
+        
+        return h;
     }
 
     public int getTileValue(int line, int column) {

@@ -11,7 +11,7 @@ import java.util.EventObject;
  *
  * @author luis
  */
-class MontaCargasEvent extends EventObject{
+public class MontaCargasEvent extends EventObject {
     public MontaCargasEvent(Object source) {
         super(source);
     }

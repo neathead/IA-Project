@@ -5,8 +5,7 @@ import agent.Heuristic;
 public class HeuristicTileDistance extends Heuristic<EightPuzzleProblem, EightPuzzleState>{
 
     public double compute(EightPuzzleState state){
-        //TODO        
-        return 0;
+        return state.computeTilesDistance();
     }
     
     @Override
