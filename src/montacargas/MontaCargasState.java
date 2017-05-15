@@ -16,33 +16,23 @@ import java.util.LinkedList;
  * @author luis
  */
 class MontaCargasState extends State implements Cloneable {
+
     //Apenas vou ter que saber se o carro esta a frente da porta
     static final int[][] goalMatrix = {{0, 0, 0, 0, 0, 0},
-<<<<<<< HEAD
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 1, 9},
-                                        {0, 0, 0, 0, 0, 0},
-                                        {0, 0, 0, 0, 0, 0}};
-=======
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 1, 10},
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 0, 0}};
->>>>>>> refs/remotes/origin/master
+    {0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 1, 10},
+    {0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
+
     static final int[] linesfinalMatrix = {0, 0, 0, 1, 1, 1, 2, 2, 2};
     static final int[] colsfinalMatrix = {0, 1, 2, 0, 1, 2, 0, 1, 2};
     public static final int SIZE = 3;
     private int[][] matrix;
-<<<<<<< HEAD
-    private int lineBlank;
-    private int columnBlank;
-=======
+
     private int lineBlank;      //TODO: ?
     private int columnBlank;    //TODO: ?
     private LinkedList<Peca> pecas;
->>>>>>> refs/remotes/origin/master
 
     public MontaCargasState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -57,11 +47,11 @@ class MontaCargasState extends State implements Cloneable {
             }
         }
     }
-/*    
+
+    /*    
     public boolean canMoveCaixa2() {
         
     }*/
-
     public boolean canMoveUp() {
         return lineBlank != 0;
     }
@@ -143,7 +133,7 @@ class MontaCargasState extends State implements Cloneable {
             listener.puzzleChanged(null);
         }
     }
-    
+
     @Override
     public void executeAction(Action action) {
         action.execute(this);
@@ -154,7 +144,7 @@ class MontaCargasState extends State implements Cloneable {
     public int hashCode() {
         return 97 * 7 + Arrays.deepHashCode(this.matrix);
     }
-    
+
     @Override
     public Object clone() {
         return new MontaCargasState(matrix);
@@ -173,7 +163,7 @@ class MontaCargasState extends State implements Cloneable {
 
         return Arrays.deepEquals(matrix, o.matrix);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -185,5 +175,34 @@ class MontaCargasState extends State implements Cloneable {
             }
         }
         return buffer.toString();
+    }
+
+    double computeTilesDistance() {
+        double h = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0) {
+                    h += Math.abs(i - linesfinalMatrix[matrix[i][j]])
+                            + Math.abs(j - colsfinalMatrix[matrix[i][j]]);
+                }
+            }
+        }
+
+        return h;
+    }
+
+    double computeTilesOffPlace() {
+        double h = 0;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
+                    h++;
+                }
+            }
+        }
+
+        return h;
     }
 }
