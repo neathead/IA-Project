@@ -9,6 +9,7 @@ import agent.Action;
 import agent.State;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  *
@@ -17,17 +18,31 @@ import java.util.Arrays;
 class MontaCargasState extends State implements Cloneable {
     //Apenas vou ter que saber se o carro esta a frente da porta
     static final int[][] goalMatrix = {{0, 0, 0, 0, 0, 0},
+<<<<<<< HEAD
                                         {0, 0, 0, 0, 0, 0},
                                         {0, 0, 0, 0, 0, 0},
                                         {0, 0, 0, 0, 1, 9},
                                         {0, 0, 0, 0, 0, 0},
                                         {0, 0, 0, 0, 0, 0}};
+=======
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 1, 10},
+                                       {0, 0, 0, 0, 0, 0},
+                                       {0, 0, 0, 0, 0, 0}};
+>>>>>>> refs/remotes/origin/master
     static final int[] linesfinalMatrix = {0, 0, 0, 1, 1, 1, 2, 2, 2};
     static final int[] colsfinalMatrix = {0, 1, 2, 0, 1, 2, 0, 1, 2};
     public static final int SIZE = 3;
     private int[][] matrix;
+<<<<<<< HEAD
     private int lineBlank;
     private int columnBlank;
+=======
+    private int lineBlank;      //TODO: ?
+    private int columnBlank;    //TODO: ?
+    private LinkedList<Peca> pecas;
+>>>>>>> refs/remotes/origin/master
 
     public MontaCargasState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -35,19 +50,23 @@ class MontaCargasState extends State implements Cloneable {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 this.matrix[i][j] = matrix[i][j];
-                if (this.matrix[i][j] == 0) {
+                if (this.matrix[i][j] == 1) {
                     lineBlank = i;
                     columnBlank = j;
                 }
             }
         }
     }
+/*    
+    public boolean canMoveCaixa2() {
+        
+    }*/
 
     public boolean canMoveUp() {
         return lineBlank != 0;
     }
 
-    public boolean canMoveRight() {
+    public boolean canMoveRight() { //Carro
         return columnBlank != matrix.length - 1;
     }
 
@@ -55,7 +74,7 @@ class MontaCargasState extends State implements Cloneable {
         return lineBlank != matrix.length - 1;
     }
 
-    public boolean canMoveLeft() {
+    public boolean canMoveLeft() { //Carro
         return columnBlank != 0;
     }
 

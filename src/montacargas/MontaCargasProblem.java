@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package montacargas;
 
 import agent.Action;
@@ -11,19 +6,23 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- *
- * @author luis
- */
 public class MontaCargasProblem extends Problem<MontaCargasState> {
     private MontaCargasState goalState;
     
     public MontaCargasProblem(MontaCargasState initalState) {
         super(initalState, new ArrayList<Action>());
+<<<<<<< HEAD
         //actions.add(new ActionUp());
         //actions.add(new ActionRight());
         //actions.add(new ActionLeft());
         //actions.add(new ActionDown());
+=======
+        //TODO: actions
+        actions.add(new ActionUp());
+        actions.add(new ActionRight());
+        actions.add(new ActionLeft());
+        actions.add(new ActionDown());
+>>>>>>> refs/remotes/origin/master
         
         this.goalState = new MontaCargasState(MontaCargasState.goalMatrix);
     }

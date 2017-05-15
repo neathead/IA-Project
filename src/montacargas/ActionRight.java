@@ -2,18 +2,18 @@ package montacargas;
 
 import agent.Action;
 
-public class ActionMoveCaixa2 extends Action<MontaCargasState>{
+public class ActionRight extends Action<MontaCargasState>{
 
-    public ActionMoveCaixa2(){
+    public ActionRight(){
         super(1);
     }
 
     public void execute(MontaCargasState state){
-        //state.moveCaixa2();
+        state.moveRight();
         state.setAction(this);
     }
 
     public boolean isValid(MontaCargasState state){
-        return false; //state.canMoveCaixa2();
+        return state.canMoveRight();
     }
 }
