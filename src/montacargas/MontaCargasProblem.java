@@ -12,10 +12,10 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
     public MontaCargasProblem(MontaCargasState initalState) {
         super(initalState, new ArrayList<Action>());
         //TODO: actions
-        //actions.add(new ActionUp());
-        //actions.add(new ActionRight());
-        //actions.add(new ActionLeft());
-        //actions.add(new ActionDown());
+        actions.add(new ActionUp());
+        actions.add(new ActionRight());
+        actions.add(new ActionLeft());
+        actions.add(new ActionDown());
         
         this.goalState = new MontaCargasState(MontaCargasState.goalMatrix);
     }
