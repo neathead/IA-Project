@@ -12,6 +12,7 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
     public PuzzleTileCellRenderer() {
         setBackground(Color.WHITE);
         setOpaque(true);
+
     }
 
     @Override
@@ -24,7 +25,7 @@ public class PuzzleTileCellRenderer extends JLabel implements TableCellRenderer 
         ImageLoader loader = ImageLoader.getLoader();
         setText("");
 
-        switch ((Integer) value) {
+        switch (((Integer) value)) {
             case 0:
                 setIcon(loader.getIcon(Properties.EMPTY_IMAGE));
                 break;

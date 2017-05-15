@@ -7,7 +7,6 @@ public class DepthLimitedSearch extends DepthFirstSearch {
 
     private int limit;
 
-
     public DepthLimitedSearch() {
         this(28);
     }
@@ -18,9 +17,7 @@ public class DepthLimitedSearch extends DepthFirstSearch {
 
     @Override
     public void addSuccessorsToFrontier(List<State> successors, Node parent) {
-        if (parent.getDepth()<=limit) {
-            super.addSuccessorsToFrontier(successors, parent);
-        }
+        //TODO
     }
 
     public int getLimit() {
@@ -33,6 +30,6 @@ public class DepthLimitedSearch extends DepthFirstSearch {
 
     @Override
     public String toString() {
-        return "Depth Limited First Search";
+        return "Limited depth first search";
     }
 }

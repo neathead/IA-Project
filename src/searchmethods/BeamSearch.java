@@ -18,14 +18,7 @@ public class BeamSearch extends AStarSearch {
 
     @Override
     public void addSuccessorsToFrontier(List<State> successors, Node parent) {
-        super.addSuccessorsToFrontier(successors, parent);
-        if (frontier.size() > beamSize) {
-            NodePriorityQueue aux = new NodePriorityQueue();
-            for (int i = 0; i < beamSize; i++) {
-                aux.add(frontier.poll());
-            }
-            frontier=aux;
-        }
+        //TODO
     }
 
     public void setBeamSize(int beamSize) {

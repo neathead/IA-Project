@@ -2,6 +2,9 @@ package gui;
 
 import agent.Heuristic;
 import agent.Solution;
+import eightpuzzle.EightPuzzleAgent;
+import eightpuzzle.EightPuzzleProblem;
+import eightpuzzle.EightPuzzleState;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -24,9 +27,6 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
-import montacargas.MontaCargasAgent;
-import montacargas.MontaCargasProblem;
-import montacargas.MontaCargasState;
 import searchmethods.BeamSearch;
 import searchmethods.DepthLimitedSearch;
 import searchmethods.SearchMethod;
@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
                                      {0, 3, 0, 0, 0, 0},
                                      {0, 8, 8, 8, 8, 0}};
 
-    private MontaCargasAgent agent = new MontaCargasAgent(new MontaCargasState(initialMatrix));
+    private EightPuzzleAgent agent = new EightPuzzleAgent(new EightPuzzleState(initialMatrix));
     private JComboBox comboBoxSearchMethods;
     private JComboBox comboBoxHeuristics;
     private JLabel labelSearchParameter = new JLabel("limit/beam size:");
@@ -131,7 +131,7 @@ public class MainFrame extends JFrame {
     }
 
     public void buttonInitialState_ActionPerformed(ActionEvent e) {
-        JFileChooser fc = new JFileChooser(new java.io.File("./problemas"));
+        JFileChooser fc = new JFileChooser(new java.io.File("."));
         try {
             if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 puzzleTableModel.setPuzzle(agent.readInitialStateFromFile(fc.getSelectedFile()));
@@ -178,7 +178,7 @@ public class MainFrame extends JFrame {
                 buttonSolve.setEnabled(false);
                 try {
                     prepareSearchAlgorithm();
-                    MontaCargasProblem problem = new MontaCargasProblem((MontaCargasState) agent.getEnvironment().clone());
+                    EightPuzzleProblem problem = new EightPuzzleProblem((EightPuzzleState) agent.getEnvironment().clone());
                     agent.solveProblem(problem);
                 } catch (Exception e) {
                     e.printStackTrace(System.err);

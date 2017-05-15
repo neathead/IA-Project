@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EightPuzzleProblem extends Problem<EightPuzzleState> {
+
+
     private EightPuzzleState goalState;
     
     public EightPuzzleProblem(EightPuzzleState initalState) {
