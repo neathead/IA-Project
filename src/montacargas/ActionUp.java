@@ -1,11 +1,12 @@
 package montacargas;
 
+import montacargas.pecas.Peca;
 import agent.Action;
 
 public class ActionUp extends Action<MontaCargasState>{
 
-    public ActionUp(){
-        super(1);
+    public ActionUp(Peca peca){
+        super(1, peca);
     }
 
     public void execute(MontaCargasState state){

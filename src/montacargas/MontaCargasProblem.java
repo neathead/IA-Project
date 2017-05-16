@@ -7,17 +7,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MontaCargasProblem extends Problem<MontaCargasState> {
-    private MontaCargasState goalState;
+
     
     public MontaCargasProblem(MontaCargasState initalState) {
         super(initalState, new ArrayList<Action>());
         //TODO: actions
-        actions.add(new ActionUp());
-        actions.add(new ActionRight());
-        actions.add(new ActionLeft());
-        actions.add(new ActionDown());
+        //actions.add(initialState.getPossibleActions());
         
-        this.goalState = new MontaCargasState(MontaCargasState.goalMatrix);
+      
     }
 
     public List<MontaCargasState> executeActions(MontaCargasState state) {
@@ -33,13 +30,9 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
     }
 
     public boolean isGoal(MontaCargasState state) {
-        return state.equals(goalState);
+        return state.getColunaCarro() == state.getNumColumns()-1;
     }
-        
-    public MontaCargasState getGoalState() {
-        return goalState;
-    }
-
+ 
     @Override
     public double computePathCost(List<Action> path) {
         return path.size();

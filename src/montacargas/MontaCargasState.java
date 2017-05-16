@@ -1,5 +1,7 @@
 package montacargas;
 
+import montacargas.pecas.Peca6;
+import montacargas.pecas.Peca;
 import agent.Action;
 import agent.State;
 import java.util.ArrayList;
@@ -8,19 +10,10 @@ import java.util.LinkedList;
 
 public class MontaCargasState extends State implements Cloneable {
     //Apenas vou ter que saber se o carro esta a frente da porta
-    static final int[][] goalMatrix = {{0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 1, 10},
-                                       {0, 0, 0, 0, 0, 0},
-                                       {0, 0, 0, 0, 0, 0}};
-    static final int[] linesfinalMatrix = {0, 0, 0, 1, 1, 1, 2, 2, 2};
-    static final int[] colsfinalMatrix = {0, 1, 2, 0, 1, 2, 0, 1, 2};
-    public static final int SIZE = 3;
-    private int[][] matrix;
-    private int lineBlank;      //TODO: ?
-    private int columnBlank;    //TODO: ?
-    private LinkedList<Peca> pecas;
+
+    private int[][] matrix;    //TODO: Delete
+    private int columnCarro;    //TODO: Delete
+    private LinkedList<Peca> pecas = new LinkedList<Peca>();
 
     public MontaCargasState(int[][] matrix) {
         this.matrix = new int[matrix.length][matrix.length];
@@ -28,10 +21,13 @@ public class MontaCargasState extends State implements Cloneable {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 this.matrix[i][j] = matrix[i][j];
-                if (this.matrix[i][j] == 1) {
-                    lineBlank = i;
-                    columnBlank = j;
+                if(this.matrix[i][j]==1)
+                    columnCarro=j;
+                switch(this.matrix[i][j]) {
+                    case 6:
+                        pecas.add(new Peca6(this.matrix[i][j], i, j));
                 }
+                
             }
         }
     }
@@ -192,5 +188,19 @@ public class MontaCargasState extends State implements Cloneable {
         }
         
         return h;
+    }
+
+    /**
+     * @return the columnCarro
+     */
+    public int getColumnCarro() {
+        return columnCarro;
+    }
+
+    /**
+     * @param columnCarro the columnCarro to set
+     */
+    public void setColumnCarro(int columnCarro) {
+        this.columnCarro = columnCarro;
     }
 }

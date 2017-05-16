@@ -6,14 +6,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class MontaCargasAgent extends Agent<MontaCargasState>{
-    //update
     static final int CAR = 1;
     static final int DOOR = 10;
     protected MontaCargasState initialEnvironment;    
     
-    public MontaCargasAgent(MontaCargasState environemt) {
-        super(environemt);
-        initialEnvironment = (MontaCargasState) environemt.clone();
+    public MontaCargasAgent(MontaCargasState enviroment) {
+        super(enviroment);
+        initialEnvironment = (MontaCargasState) enviroment.clone();
         heuristics.add(new HeuristicTileDistance());
         heuristics.add(new HeuristicTilesOutOfPlace());
         heuristic = heuristics.get(0);
