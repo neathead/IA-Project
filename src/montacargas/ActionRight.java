@@ -10,11 +10,11 @@ public class ActionRight extends Action<MontaCargasState>{
     }
 
     public void execute(MontaCargasState state){
-        state.moveRight();
+        state.moveRight(peca);
         state.setAction(this);
     }
 
     public boolean isValid(MontaCargasState state){
-        return state.canMoveRight();
+        return state.canMoveRight(peca);
     }
 }

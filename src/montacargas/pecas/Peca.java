@@ -5,14 +5,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Peca {
-    private int linha, coluna;
+    protected int linha, coluna;
     protected int tamnho;
-    protected LinkedList<Action> actions;
+    protected LinkedList<Action> actions = new LinkedList<Action>();
 
     public Peca(int linha, int coluna) {
         this.linha = linha;
         this.coluna = coluna;
     }
+    /*
+    public void setLocation(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
+    }*/
 
     public int getTamnho() {
         return tamnho;

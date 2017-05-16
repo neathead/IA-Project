@@ -11,9 +11,7 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
     
     public MontaCargasProblem(MontaCargasState initalState) {
         super(initalState, new ArrayList<Action>());
-        //TODO: actions
-        //actions.add(initialState.getPossibleActions());
-        
+        actions.addAll(initalState.getActions());
       
     }
 
@@ -30,7 +28,8 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
     }
 
     public boolean isGoal(MontaCargasState state) {
-        return state.getColunaCarro() == state.getNumColumns()-1;
+        //Só é preciso saber se o carro esta a frente da porta
+        return state.getColumnCarro() == state.getNumColumns()-1;
     }
  
     @Override
