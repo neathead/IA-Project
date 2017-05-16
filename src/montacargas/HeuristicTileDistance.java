@@ -14,7 +14,7 @@ import agent.Heuristic;
 public class HeuristicTileDistance extends Heuristic<MontaCargasProblem, MontaCargasState>{
 
     public double compute(MontaCargasState state){
-        return 0; //STORA STORA state.computeTilesDistance(); 
+        return 1; //STORA STORA state.computeTilesDistance(); 
     }
     
     @Override

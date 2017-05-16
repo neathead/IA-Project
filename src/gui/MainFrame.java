@@ -169,8 +169,7 @@ public class MainFrame extends JFrame {
         textArea.setText("");
     }
 
-    public void buttonSolve_ActionPerformed(ActionEvent e) {
-        
+    public void buttonSolve_ActionPerformed(ActionEvent e) {   
         SwingWorker worker = new SwingWorker<Solution, Void>() {
             public Solution doInBackground() {
                 textArea.setText("");
