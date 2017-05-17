@@ -189,9 +189,8 @@ public class MainFrame extends JFrame {
             public void done() {
                 if (!agent.hasBeenStopped()) {
                     textArea.setText(agent.getSearchReport());
-                    buttonShowSolution.setEnabled(true);
                     if (agent.hasSolution()) {
-                        
+                        buttonShowSolution.setEnabled(true);
                         buttonSolve.setEnabled(false);
                     }
                 }

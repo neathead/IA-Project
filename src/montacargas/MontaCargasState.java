@@ -39,7 +39,7 @@ public class MontaCargasState extends State implements Cloneable {
                         break;
                     case 4:
                         pecas.add(new Peca4(i, j));
-                        j++;
+                        skip.add(new Posicao(i, j + 1));
                         break;
                     case 5:
                         pecas.add(new Peca5(i, j));
@@ -47,7 +47,8 @@ public class MontaCargasState extends State implements Cloneable {
                         break;
                     case 6:
                         pecas.add(new Peca6(i, j));
-                        j += 2;
+                        skip.add(new Posicao(i, j + 1));
+                        skip.add(new Posicao(i, j + 2));
                         break;
                     case 7:
                         pecas.add(new Peca7(i, j));
@@ -56,7 +57,9 @@ public class MontaCargasState extends State implements Cloneable {
                         break;
                     case 8:
                         pecas.add(new Peca8(i, j));
-                        j += 3;
+                        skip.add(new Posicao(i, j + 1));
+                        skip.add(new Posicao(i, j + 2));
+                        skip.add(new Posicao(i, j + 3));
                         break;
                     case 9:
                         pecas.add(new Peca9(i, j));
@@ -92,7 +95,8 @@ public class MontaCargasState extends State implements Cloneable {
     public boolean canMoveRight(Peca peca) { //Horizontais
         if (peca.getColuna() + peca.getTamnho() < matrix.length) {
             if (matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()] == 0
-                    || (matrix[peca.getLinha()][peca.getColuna()] == 1 && matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()] == 10)) {
+                    || (matrix[peca.getLinha()][peca.getColuna()] == 1 
+                    && matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()] == 10)) {
                 return true;
             }
         }
@@ -125,8 +129,8 @@ public class MontaCargasState extends State implements Cloneable {
      */
     public void moveLeft(Peca peca) { //Horizontais [][][][][][][]
         matrix[peca.getLinha()][peca.getColuna() - 1]
-                = matrix[peca.getLinha()][peca.getColuna()];
-        matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho() - 1] = 0;
+                = matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1];
+        matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1] = 0;
 
         if (peca instanceof Carro) {
             columnCarro--;
@@ -135,7 +139,7 @@ public class MontaCargasState extends State implements Cloneable {
         for (Peca p : pecas) {
             if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
                 p.setColuna(p.getColuna() - 1);
-                
+                break;
             }
         }
     }
@@ -152,7 +156,6 @@ public class MontaCargasState extends State implements Cloneable {
         for (Peca p : pecas) {
             if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
                 p.setColuna(p.getColuna() + 1);
-                
                 break;
             }
         }
@@ -160,12 +163,13 @@ public class MontaCargasState extends State implements Cloneable {
 
     public void moveUp(Peca peca) { //Verticais [][][][][][][]
         matrix[peca.getLinha() - 1][peca.getColuna()]
-                = matrix[peca.getLinha()][peca.getColuna()];
-        matrix[peca.getLinha() + peca.getTamnho() - 1][peca.getColuna()] = 0;
+                = matrix[peca.getLinha()+peca.getTamnho()-1][peca.getColuna()];
+        matrix[peca.getLinha()+peca.getTamnho()-1][peca.getColuna()] = 0;
+        
         for (Peca p : pecas) {
             if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
                 p.setLinha(p.getLinha() - 1);
-                
+                break;
             }
         }
     }
@@ -174,10 +178,11 @@ public class MontaCargasState extends State implements Cloneable {
         matrix[peca.getLinha() + peca.getTamnho()][peca.getColuna()]
                 = matrix[peca.getLinha()][peca.getColuna()];
         matrix[peca.getLinha()][peca.getColuna()] = 0;
+        
         for (Peca p : pecas) {
             if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
                 p.setLinha(p.getLinha() + 1);
-                
+                break;
             }
         }
     }
