@@ -12,6 +12,7 @@ import utils.Posicao;
 public class MontaCargasState extends State implements Cloneable {
 
     private int[][] matrix;
+    private int linhaCarro;
     private int columnCarro;
     private LinkedList<Peca> pecas;
 
@@ -29,6 +30,7 @@ public class MontaCargasState extends State implements Cloneable {
                 switch (this.matrix[i][j]) {
                     case 1:
                         pecas.add(new Carro(i, j));
+                        linhaCarro = i;
                         columnCarro = j;
                         break;
                     case 2:
@@ -278,42 +280,23 @@ public class MontaCargasState extends State implements Cloneable {
         return buffer.toString();
     }
 
-    double computeTilesDistance() {
+    public double computeCarDistance() {
         double h = 0;
 
         h = Math.abs(columnCarro - matrix.length - 1);
-        /*
-        for (int i = 0; i < matrix.length; i++) {
-                if (matrix[][] != 0) {
-                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
-                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
-                }
-            }
-         */
- /*
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                if (matrix[i][j] != 0) {
-                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
-                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
-                }
-            }
-        }
-         */
+    
         return h;
     }
 
-    double computeTilesOffPlace() {
+    public double computeTilesInFrontOfCar() {
         double h = 0;
-        /*
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
-                    h++;
-                }
+        
+        for (int j = columnCarro + 1; j < matrix.length; j++) {
+            if (matrix[linhaCarro][j] != 0) {
+                h++;
             }
         }
-         */
+        
         return h;
     }
 

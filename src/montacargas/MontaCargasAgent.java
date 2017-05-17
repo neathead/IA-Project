@@ -1,5 +1,7 @@
 package montacargas;
 
+import montacargas.heuristics.HeuristicTilesInFrontOfCar;
+import montacargas.heuristics.HeuristicCarDistance;
 import agent.Agent;
 import gui.Properties;
 import java.io.File;
@@ -13,8 +15,8 @@ public class MontaCargasAgent extends Agent<MontaCargasState>{
     public MontaCargasAgent(MontaCargasState enviroment) {
         super(enviroment);
         initialEnvironment = (MontaCargasState) enviroment.clone();
-        heuristics.add(new HeuristicTileDistance());
-        heuristics.add(new HeuristicTilesOutOfPlace());
+        heuristics.add(new HeuristicTilesInFrontOfCar());
+        heuristics.add(new HeuristicCarDistance());
         heuristic = heuristics.get(0); 
     }
             

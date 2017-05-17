@@ -237,6 +237,10 @@ public class MainFrame extends JFrame {
             searchMethod.setBeamSize(Integer.parseInt(textFieldSearchParameter.getText()));
         }
     }
+    
+    public JButton getButtonSolve() {
+        return buttonSolve;
+    }
 }
 
 class ComboBoxSearchMethods_ActionAdapter implements ActionListener {
@@ -348,6 +352,7 @@ class TextFieldSearchParameter_KeyAdapter implements KeyListener {
         char c = e.getKeyChar();
         if (!Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {
             e.consume();
+            adaptee.getButtonSolve().setEnabled(true);
         }
     }
 }

@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package montacargas;
+package montacargas.heuristics;
 
 import agent.Heuristic;
+import montacargas.MontaCargasProblem;
+import montacargas.MontaCargasState;
 
 /**
  *
  * @author luis
  */
-public class HeuristicTileDistance extends Heuristic<MontaCargasProblem, MontaCargasState>{
+public class HeuristicCarDistance extends Heuristic<MontaCargasProblem, MontaCargasState>{
 
     public double compute(MontaCargasState state){
-        return state.computeTilesDistance(); 
+        return state.computeCarDistance(); 
     }
     
     @Override
     public String toString(){
-        return "Tiles distance to final position";
+        return "Car distance to the door position";
     }
 }
