@@ -3,18 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package montacargas;
+package montacargas.heuristics;
 
 import agent.Heuristic;
+import montacargas.MontaCargasProblem;
+import montacargas.MontaCargasState;
 
-public class HeuristicTilesOutOfPlace extends Heuristic<MontaCargasProblem, MontaCargasState> {
+public class HeuristicTilesInFrontOfCar extends Heuristic<MontaCargasProblem, MontaCargasState> {
 
     public double compute(MontaCargasState state) {
-        return state.computeTilesOffPlace();
+        return state.computeTilesInFrontOfCar();
     }
 
     @Override
     public String toString() {
-        return "Tiles out of place";
+        return "Tiles in front of Car";
     }
 }

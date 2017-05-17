@@ -169,8 +169,7 @@ public class MainFrame extends JFrame {
         textArea.setText("");
     }
 
-    public void buttonSolve_ActionPerformed(ActionEvent e) {
-        
+    public void buttonSolve_ActionPerformed(ActionEvent e) {   
         SwingWorker worker = new SwingWorker<Solution, Void>() {
             public Solution doInBackground() {
                 textArea.setText("");
@@ -237,6 +236,10 @@ public class MainFrame extends JFrame {
             BeamSearch searchMethod = (BeamSearch) agent.getSearchMethod();
             searchMethod.setBeamSize(Integer.parseInt(textFieldSearchParameter.getText()));
         }
+    }
+    
+    public JButton getButtonSolve() {
+        return buttonSolve;
     }
 }
 
@@ -349,6 +352,7 @@ class TextFieldSearchParameter_KeyAdapter implements KeyListener {
         char c = e.getKeyChar();
         if (!Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE) {
             e.consume();
+            adaptee.getButtonSolve().setEnabled(true);
         }
     }
 }

@@ -1,19 +1,20 @@
 package montacargas;
 
+import montacargas.pecas.Peca;
 import agent.Action;
 
 public class ActionDown extends Action<MontaCargasState>{
 
-    public ActionDown(){
-        super(1);
+    public ActionDown(Peca peca){
+        super(1, peca);
     }
 
     public void execute(MontaCargasState state){
-        state.moveDown();
+        state.moveDown(peca);
         state.setAction(this);
     }
 
     public boolean isValid(MontaCargasState state){
-        return state.canMoveDown();
+        return state.canMoveDown(peca);
     }
 }
