@@ -19,6 +19,16 @@ public class Peca {
         this.coluna = coluna;
     }*/
 
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+    
+    
+
     public int getTamnho() {
         return tamnho;
     }

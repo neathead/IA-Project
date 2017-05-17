@@ -10,7 +10,7 @@ import agent.Heuristic;
 public class HeuristicTilesOutOfPlace extends Heuristic<MontaCargasProblem, MontaCargasState> {
 
     public double compute(MontaCargasState state) {
-        return 0; //STORA STORA state.computeTilesOffPlace();
+        return state.computeTilesOffPlace();
     }
 
     @Override

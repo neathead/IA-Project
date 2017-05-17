@@ -15,7 +15,7 @@ public class MontaCargasAgent extends Agent<MontaCargasState>{
         initialEnvironment = (MontaCargasState) enviroment.clone();
         heuristics.add(new HeuristicTileDistance());
         heuristics.add(new HeuristicTilesOutOfPlace());
-        heuristic = heuristics.get(0);
+        heuristic = heuristics.get(0); 
     }
             
     public MontaCargasState resetEnvironment(){

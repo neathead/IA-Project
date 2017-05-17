@@ -10,11 +10,13 @@ import java.util.LinkedList;
 import utils.Posicao;
 
 public class MontaCargasState extends State implements Cloneable {
-    private int[][] matrix;    
+
+    private int[][] matrix;
     private int columnCarro;
-    private LinkedList<Peca> pecas = new LinkedList<Peca>();
+    private LinkedList<Peca> pecas;
 
     public MontaCargasState(int[][] matrix) {
+        this.pecas = new LinkedList<Peca>();
         this.matrix = new int[matrix.length][matrix.length];
         LinkedList<Posicao> skip = new LinkedList<Posicao>();
 
@@ -24,48 +26,48 @@ public class MontaCargasState extends State implements Cloneable {
                 if (skip.contains(new Posicao(i, j))) {
                     continue;
                 }
-                switch(this.matrix[i][j]) {
+                switch (this.matrix[i][j]) {
                     case 1:
-                        pecas.add(new Carro(i,j));
-                        columnCarro=j;
+                        pecas.add(new Carro(i, j));
+                        columnCarro = j;
                         break;
                     case 2:
-                        pecas.add(new Peca2(i, j)); 
+                        pecas.add(new Peca2(i, j));
                         break;
                     case 3:
-                        pecas.add(new Peca3(i, j)); 
+                        pecas.add(new Peca3(i, j));
                         break;
                     case 4:
-                        pecas.add(new Peca4(i, j)); 
+                        pecas.add(new Peca4(i, j));
                         j++;
                         break;
                     case 5:
                         pecas.add(new Peca5(i, j));
-                        skip.add(new Posicao(i+1, j));
+                        skip.add(new Posicao(i + 1, j));
                         break;
                     case 6:
                         pecas.add(new Peca6(i, j));
-                        j+=2;
+                        j += 2;
                         break;
                     case 7:
                         pecas.add(new Peca7(i, j));
-                        skip.add(new Posicao(i+1, j));
-                        skip.add(new Posicao(i+2, j));
+                        skip.add(new Posicao(i + 1, j));
+                        skip.add(new Posicao(i + 2, j));
                         break;
                     case 8:
                         pecas.add(new Peca8(i, j));
-                        j+=3;
+                        j += 3;
                         break;
                     case 9:
-                        pecas.add(new Peca9(i, j)); 
-                        skip.add(new Posicao(i+1, j));
-                        skip.add(new Posicao(i+2, j));
-                        skip.add(new Posicao(i+3, j));
+                        pecas.add(new Peca9(i, j));
+                        skip.add(new Posicao(i + 1, j));
+                        skip.add(new Posicao(i + 2, j));
+                        skip.add(new Posicao(i + 3, j));
                         break;
                 }
             }
         }
-        
+
         //System.out.println(pecas.size()); //FIX: For some reason this number is chaging
         if (false) { //DEBUG
             for (int i = 0; i < matrix.length; i++) {
@@ -74,40 +76,41 @@ public class MontaCargasState extends State implements Cloneable {
                 }
                 System.out.println("");
             }
-            System.out.println("----"+pecas.size()+"----");
+            System.out.println("----" + pecas.size() + "----");
         }
     }
-    
+
     public boolean canMoveLeft(Peca peca) { //Horizontais
-        if (peca.getColuna()-1 >= 0) {
-            if (matrix[peca.getLinha()][peca.getColuna()-1] == 0) {
+        if (peca.getColuna() - 1 >= 0) {
+            if (matrix[peca.getLinha()][peca.getColuna() - 1] == 0) {
                 return true;
             }
         }
         return false;
     }
-        
+
     public boolean canMoveRight(Peca peca) { //Horizontais
-        if (peca.getColuna()+peca.getTamnho() < matrix.length) {
-            if (matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()] == 0) {
+        if (peca.getColuna() + peca.getTamnho() < matrix.length) {
+            if (matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()] == 0
+                    || (matrix[peca.getLinha()][peca.getColuna()] == 1 && matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()] == 10)) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public boolean canMoveUp(Peca peca) { //Verticais
-        if (peca.getLinha()-1 >= 0) {
-            if (matrix[peca.getLinha()-1][peca.getColuna()] == 0) {
+        if (peca.getLinha() - 1 >= 0) {
+            if (matrix[peca.getLinha() - 1][peca.getColuna()] == 0) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public boolean canMoveDown(Peca peca) { //Verticais
-        if (peca.getLinha()+peca.getTamnho() < matrix.length) {
-            if (matrix[peca.getLinha()+peca.getTamnho()][peca.getColuna()] == 0) {
+        if (peca.getLinha() + peca.getTamnho() < matrix.length) {
+            if (matrix[peca.getLinha() + peca.getTamnho()][peca.getColuna()] == 0) {
                 return true;
             }
         }
@@ -120,49 +123,65 @@ public class MontaCargasState extends State implements Cloneable {
      * Doing the verification in these methods would imply that a clone of the
      * state was created whether the operation could be executed or not.
      */
-    public void moveLeft(Peca peca) { //Horizontais
+    public void moveLeft(Peca peca) { //Horizontais [][][][][][][]
+        matrix[peca.getLinha()][peca.getColuna() - 1]
+                = matrix[peca.getLinha()][peca.getColuna()];
+        matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho() - 1] = 0;
+
         if (peca instanceof Carro) {
-            matrix[peca.getLinha()][peca.getColuna()-1] = 1;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
             columnCarro--;
         }
-        if (peca instanceof Peca2) {
-            matrix[peca.getLinha()][peca.getColuna()-1] = 2;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
-        }
-            
-        /*
-        matrix[lineBlank][columnBlank] = matrix[--lineBlank][columnBlank];
-        matrix[lineBlank][columnBlank] = 0;
-        */
-    }
-        
-    public void moveRight(Peca peca) { //Horizontais
-        if (peca instanceof Carro) {
-            matrix[peca.getLinha()][peca.getColuna()+1] = 1;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
-            columnCarro++;
-        }
-        if (peca instanceof Peca2) {
-            matrix[peca.getLinha()][peca.getColuna()+1] = 2;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
-        }
-    }
-    
-    public void moveUp(Peca peca) { //Verticais
-        if (peca instanceof Peca3) {
-            matrix[peca.getLinha()-1][peca.getColuna()] = 3;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
+
+        for (Peca p : pecas) {
+            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+                p.setColuna(p.getColuna() - 1);
+                
+            }
         }
     }
 
-    public void moveDown(Peca peca) { //Verticais
-        if (peca instanceof Peca3) {
-            matrix[peca.getLinha()+1][peca.getColuna()] = 3;
-            matrix[peca.getLinha()][peca.getColuna()] = 0;
+    public void moveRight(Peca peca) { //Horizontais [][][][][][][]
+        matrix[peca.getLinha()][peca.getColuna() + peca.getTamnho()]
+                = matrix[peca.getLinha()][peca.getColuna()];
+        matrix[peca.getLinha()][peca.getColuna()] = 0;
+
+        if (peca instanceof Carro) {
+            columnCarro++;
+            //System.out.println("entrou------------------------------------------------------------------"+columnCarro);
+        }
+        for (Peca p : pecas) {
+            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+                p.setColuna(p.getColuna() + 1);
+                
+                break;
+            }
         }
     }
-    
+
+    public void moveUp(Peca peca) { //Verticais [][][][][][][]
+        matrix[peca.getLinha() - 1][peca.getColuna()]
+                = matrix[peca.getLinha()][peca.getColuna()];
+        matrix[peca.getLinha() + peca.getTamnho() - 1][peca.getColuna()] = 0;
+        for (Peca p : pecas) {
+            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+                p.setLinha(p.getLinha() - 1);
+                
+            }
+        }
+    }
+
+    public void moveDown(Peca peca) { //Verticais [][][][][][][]
+        matrix[peca.getLinha() + peca.getTamnho()][peca.getColuna()]
+                = matrix[peca.getLinha()][peca.getColuna()];
+        matrix[peca.getLinha()][peca.getColuna()] = 0;
+        for (Peca p : pecas) {
+            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+                p.setLinha(p.getLinha() + 1);
+                
+            }
+        }
+    }
+
     public int getNumLines() {
         return matrix.length;
     }
@@ -170,7 +189,7 @@ public class MontaCargasState extends State implements Cloneable {
     public int getNumColumns() {
         return matrix[0].length;
     }
-    
+
     LinkedList<Action> getActions() {
         LinkedList<Action> actions = new LinkedList<Action>();
         for (Peca peca : pecas) {
@@ -210,7 +229,7 @@ public class MontaCargasState extends State implements Cloneable {
             listener.puzzleChanged(null);
         }
     }
-    
+
     @Override
     public void executeAction(Action action) {
         action.execute(this);
@@ -221,7 +240,7 @@ public class MontaCargasState extends State implements Cloneable {
     public int hashCode() {
         return 97 * 7 + Arrays.deepHashCode(this.matrix);
     }
-    
+
     @Override
     public Object clone() {
         return new MontaCargasState(matrix);
@@ -240,7 +259,7 @@ public class MontaCargasState extends State implements Cloneable {
 
         return Arrays.deepEquals(matrix, o.matrix);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder();
@@ -253,10 +272,20 @@ public class MontaCargasState extends State implements Cloneable {
         }
         return buffer.toString();
     }
-/* STORA STORA
+
     double computeTilesDistance() {
         double h = 0;
-        
+
+        h = Math.abs(columnCarro - matrix.length - 1);
+        /*
+        for (int i = 0; i < matrix.length; i++) {
+                if (matrix[][] != 0) {
+                    h +=Math.abs(i-linesfinalMatrix[matrix[i][j]]) +
+                        Math.abs(j-colsfinalMatrix[matrix[i][j]]);
+                }
+            }
+         */
+ /*
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 if (matrix[i][j] != 0) {
@@ -265,13 +294,13 @@ public class MontaCargasState extends State implements Cloneable {
                 }
             }
         }
-        
+         */
         return h;
     }
 
     double computeTilesOffPlace() {
         double h = 0;
-        
+        /*
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 if (matrix[i][j] != 0 && matrix[i][j] != goalMatrix[i][j]) {
@@ -279,10 +308,10 @@ public class MontaCargasState extends State implements Cloneable {
                 }
             }
         }
-        
+         */
         return h;
     }
-*/
+
     /**
      * @return the columnCarro
      */
