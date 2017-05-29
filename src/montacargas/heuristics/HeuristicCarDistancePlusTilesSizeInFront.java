@@ -9,14 +9,14 @@ import agent.Heuristic;
 import montacargas.MontaCargasProblem;
 import montacargas.MontaCargasState;
 
-public class HeuristicNew extends Heuristic<MontaCargasProblem, MontaCargasState> {
+public class HeuristicCarDistancePlusTilesSizeInFront extends Heuristic<MontaCargasProblem, MontaCargasState> {
 
     public double compute(MontaCargasState state) {
-        return state.computeNew();
+        return state.computeCarDistancePlusTilesSizeInFront();
     }
 
     @Override
     public String toString() {
-        return "HeuristicNew";
+        return "Car Distance and Tiles Size In Front";
     }
 }

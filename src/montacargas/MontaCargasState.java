@@ -312,7 +312,7 @@ public class MontaCargasState extends State implements Cloneable {
         return h;
     }
 
-    public double computeNew() {
+    public double computeCarDistancePlusTilesSizeInFront() {
         double h = 0;
         
         h += computeCarDistance();
@@ -324,10 +324,12 @@ public class MontaCargasState extends State implements Cloneable {
         return h;   
     }
 
-    public double computeNew2() { //SHIT
+    public double computeNew2() {
         double h = 0;
         
         h += computeCarDistance();
+        h += computeTilesInFrontOfCar();
+        h += computeCarDistancePlusTilesSizeInFront();
         
         for (int j = columnCarro + 1; j < matrix.length; j++) {
             if (matrix[linhaCarro][j] != 0) {
@@ -335,7 +337,6 @@ public class MontaCargasState extends State implements Cloneable {
                     h += matrix[j][k];
                 }
             }
-            
         }
         
         return h;   
