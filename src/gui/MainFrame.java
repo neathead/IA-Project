@@ -171,6 +171,8 @@ public class MainFrame extends JFrame {
 
     public void buttonSolve_ActionPerformed(ActionEvent e) {   
         SwingWorker worker = new SwingWorker<Solution, Void>() {
+            //comeca a contar o tempo
+            long initialTime = System.currentTimeMillis();
             public Solution doInBackground() {
                 textArea.setText("");
                 buttonStop.setEnabled(true);
@@ -188,6 +190,8 @@ public class MainFrame extends JFrame {
             @Override
             public void done() {
                 if (!agent.hasBeenStopped()) {
+                    long currentTime = System.currentTimeMillis() - initialTime;
+                    agent.saveSearchReportToFile(currentTime);
                     textArea.setText(agent.getSearchReport());
                     if (agent.hasSolution()) {
                         buttonShowSolution.setEnabled(true);
@@ -231,10 +235,19 @@ public class MainFrame extends JFrame {
     private void prepareSearchAlgorithm() {
         if (agent.getSearchMethod() instanceof DepthLimitedSearch) {
             DepthLimitedSearch searchMethod = (DepthLimitedSearch) agent.getSearchMethod();
-            searchMethod.setLimit(Integer.parseInt(textFieldSearchParameter.getText()));
+            try {
+                searchMethod.setLimit(Integer.parseInt(textFieldSearchParameter.getText()));
+            } catch (Exception e) {
+                searchMethod.setLimit(Integer.MAX_VALUE);
+            }
+            
         } else if (agent.getSearchMethod() instanceof BeamSearch) {
             BeamSearch searchMethod = (BeamSearch) agent.getSearchMethod();
+            try {
             searchMethod.setBeamSize(Integer.parseInt(textFieldSearchParameter.getText()));
+            } catch (Exception e) {
+                searchMethod.setBeamSize(Integer.MAX_VALUE);
+            }
         }
     }
     

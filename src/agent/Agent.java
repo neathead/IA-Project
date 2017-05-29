@@ -2,6 +2,9 @@ package agent;
 
 import java.util.ArrayList;
 import searchmethods.*;
+import static utils.FileOperations.appendToTextFile;
+import static utils.FileOperations.createStatisiticsHeaderFile;
+import static utils.FileOperations.fileExist;
 
 public class Agent<E extends State> {
 
@@ -102,5 +105,39 @@ public class Agent<E extends State> {
         sb.append("Num of generated nodes: " + searchMethod.getStatistics().numGeneratedNodes+ "\n");
 
         return sb.toString();
+    }
+    
+    public void saveSearchReportToFile(long time) {
+        if (!fileExist("Statistics.xls")){
+            createStatisiticsHeaderFile();
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(searchMethod + "\t");
+        if (solution == null) {
+            sb.append("No solution found\t");
+        } else {
+            sb.append(Double.toString(solution.getCost()) + "\t");
+        }
+        sb.append(searchMethod.getStatistics().numExpandedNodes + "\t");
+        sb.append(searchMethod.getStatistics().maxFrontierSize + "\t");
+        sb.append(searchMethod.getStatistics().numGeneratedNodes+ "\t");
+        sb.append(time+ "\t");
+        if (searchMethod instanceof BeamSearch) {
+            sb.append(((InformedSearch) searchMethod).getHeuristic().toString());
+            sb.append("\t" + ((BeamSearch) searchMethod).getBeamSize());
+        } else if (searchMethod instanceof DepthLimitedSearch) {
+            sb.append("None");
+            sb.append("\t" + ((DepthLimitedSearch) searchMethod).getLimit());
+        } else if (searchMethod instanceof InformedSearch) {
+            sb.append(((InformedSearch) searchMethod).getHeuristic().toString());
+            sb.append("\tNone");
+        } else {
+            sb.append("None\tNone");
+        }
+        
+        sb.append("\n");
+
+        appendToTextFile("Statistics.xls", sb.toString());
     }
 }

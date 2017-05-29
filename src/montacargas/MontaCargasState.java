@@ -72,22 +72,11 @@ public class MontaCargasState extends State implements Cloneable {
                 }
             }
         }
-
-        //System.out.println(pecas.size()); //FIX: For some reason this number is chaging
-        if (false) { //DEBUG
-            for (int i = 0; i < matrix.length; i++) {
-                for (int j = 0; j < matrix.length; j++) {
-                    System.out.print(matrix[i][j] + " ");
-                }
-                System.out.println("");
-            }
-            System.out.println("----" + pecas.size() + "----");
-        }
     }
 
     public boolean canMoveLeft(Peca peca) { //Horizontais
-        if (peca.getColuna() - 1 >= 0) {
-            if (matrix[peca.getLinha()][peca.getColuna() - 1] == 0) {
+        if (peca.getColuna() - 1 >= 0) { //Não pode ir para fora
+            if (matrix[peca.getLinha()][peca.getColuna() - 1] == 0) { //Não pode ir para cima de outra peca
                 return true;
             }
         }
@@ -129,7 +118,7 @@ public class MontaCargasState extends State implements Cloneable {
      * Doing the verification in these methods would imply that a clone of the
      * state was created whether the operation could be executed or not.
      */
-    public void moveLeft(Peca peca) { //Horizontais [][][][][][][]
+    public void moveLeft(Peca peca) { //Horizontais [][x][x][x][][][]
         matrix[peca.getLinha()][peca.getColuna() - 1]
                 = matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1];
         matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1] = 0;
@@ -139,7 +128,7 @@ public class MontaCargasState extends State implements Cloneable {
         }
 
         for (Peca p : pecas) {
-            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+            if (p.equals(peca)) {
                 p.setColuna(p.getColuna() - 1);
                 break;
             }
@@ -153,10 +142,10 @@ public class MontaCargasState extends State implements Cloneable {
 
         if (peca instanceof Carro) {
             columnCarro++;
-            //System.out.println("entrou------------------------------------------------------------------"+columnCarro);
         }
+        
         for (Peca p : pecas) {
-            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+            if (p.equals(peca)) {
                 p.setColuna(p.getColuna() + 1);
                 break;
             }
@@ -169,7 +158,7 @@ public class MontaCargasState extends State implements Cloneable {
         matrix[peca.getLinha()+peca.getTamnho()-1][peca.getColuna()] = 0;
         
         for (Peca p : pecas) {
-            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+            if (p.equals(peca)) {
                 p.setLinha(p.getLinha() - 1);
                 break;
             }
@@ -182,7 +171,7 @@ public class MontaCargasState extends State implements Cloneable {
         matrix[peca.getLinha()][peca.getColuna()] = 0;
         
         for (Peca p : pecas) {
-            if (p.getLinha() == peca.getLinha() && p.getColuna() == peca.getColuna()) {
+            if (p.equals(peca)) {
                 p.setLinha(p.getLinha() + 1);
                 break;
             }
@@ -214,6 +203,20 @@ public class MontaCargasState extends State implements Cloneable {
 
     public boolean isValidPosition(int line, int column) {
         return line >= 0 && line < matrix.length && column >= 0 && column < matrix[0].length;
+    }
+    
+    /**
+     * @return the columnCarro
+     */
+    public int getColumnCarro() {
+        return columnCarro;
+    }
+
+    /**
+     * @param columnCarro the columnCarro to set
+     */
+    public void setColumnCarro(int columnCarro) {
+        this.columnCarro = columnCarro;
     }
 
     //Listeners
@@ -299,18 +302,42 @@ public class MontaCargasState extends State implements Cloneable {
         
         return h;
     }
-
-    /**
-     * @return the columnCarro
-     */
-    public int getColumnCarro() {
-        return columnCarro;
+    
+    public double computeCarDistancePlusTilesInFront() {
+        double h = 0;
+        
+        h += computeCarDistance();
+        h += computeTilesInFrontOfCar();
+        
+        return h;
     }
 
-    /**
-     * @param columnCarro the columnCarro to set
-     */
-    public void setColumnCarro(int columnCarro) {
-        this.columnCarro = columnCarro;
+    public double computeNew() {
+        double h = 0;
+        
+        h += computeCarDistance();
+        
+        for (int j = columnCarro + 1; j < matrix.length; j++) {
+            h+=matrix[linhaCarro][j];
+        }
+        
+        return h;   
+    }
+
+    public double computeNew2() { //SHIT
+        double h = 0;
+        
+        h += computeCarDistance();
+        
+        for (int j = columnCarro + 1; j < matrix.length; j++) {
+            if (matrix[linhaCarro][j] != 0) {
+                for (int k = 0; k < matrix.length; k++) {
+                    h += matrix[j][k];
+                }
+            }
+            
+        }
+        
+        return h;   
     }
 }

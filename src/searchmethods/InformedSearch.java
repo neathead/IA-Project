@@ -19,5 +19,9 @@ public abstract class InformedSearch extends GraphSearch<NodePriorityQueue>{
         stopped = false;
         this.heuristic = problem.getHeuristic();
         return graphSearch(problem);
-    }    
+    }
+
+    public Heuristic getHeuristic() {
+        return heuristic;
+    }
 }

@@ -13,11 +13,6 @@ public class Peca {
         this.linha = linha;
         this.coluna = coluna;
     }
-    /*
-    public void setLocation(int linha, int coluna) {
-        this.linha = linha;
-        this.coluna = coluna;
-    }*/
 
     public void setColuna(int coluna) {
         this.coluna = coluna;
@@ -26,8 +21,6 @@ public class Peca {
     public void setLinha(int linha) {
         this.linha = linha;
     }
-    
-    
 
     public int getTamnho() {
         return tamnho;
@@ -44,4 +37,27 @@ public class Peca {
     public LinkedList<Action> getActions() {
         return actions;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Peca other = (Peca) obj;
+        if (this.linha != other.linha) {
+            return false;
+        }
+        if (this.coluna != other.coluna) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
