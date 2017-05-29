@@ -1,0 +1,6 @@
+
+	Pentium(R) CPU        P6000  @ 1.87GHz, 2 Core(s), 4.0 GB RAM
+	Windows 10 amd64
+	Java Platform API Specification 1.8
+
+Algorithm	Solution Cost	Num of Expanded Nodes	Max Frontier Size	Num of generated nodes	Time of Execution (Millis)	Heuristic	Limit/Beam Size

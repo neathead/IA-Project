@@ -107,9 +107,10 @@ public class Agent<E extends State> {
         return sb.toString();
     }
     
-    public void saveSearchReportToFile(long time) {
-        if (!fileExist("Statistics.xls")){
-            createStatisiticsHeaderFile();
+    public void saveSearchReportToFile(long time, String puzzleName) {
+        String fileName = "Statistics_"+puzzleName+".xls";
+        if (!fileExist(fileName)){
+            createStatisiticsHeaderFile(fileName);
         }
         
         StringBuilder sb = new StringBuilder();

@@ -20,7 +20,7 @@ import org.hyperic.sigar.SigarException;
 
 public class FileOperations {
 	
-    public static void createStatisiticsHeaderFile() {
+    public static void createStatisiticsHeaderFile(String fileName) {
         StringBuilder sb = new StringBuilder();
         sb.append("\n\t");
         
@@ -60,7 +60,7 @@ public class FileOperations {
         sb.append("Heuristic" + "\t");
         sb.append("Limit/Beam Size" + "\n");
         
-        appendToTextFile("Statistics.xls", sb.toString());
+        appendToTextFile(fileName, sb.toString());
     }
     
     /**

@@ -53,6 +53,7 @@ public class MainFrame extends JFrame {
     private JButton buttonShowSolution = new JButton("Show solution");
     private JButton buttonReset = new JButton("Reset to initial state");
     private JTextArea textArea;
+    private String puzzleName = "";
 
     public MainFrame() {
         try {
@@ -132,18 +133,22 @@ public class MainFrame extends JFrame {
 
     public void buttonInitialState_ActionPerformed(ActionEvent e) {
         JFileChooser fc = new JFileChooser(new java.io.File("./problemas"));
+        
         try {
             if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 puzzleTableModel.setPuzzle(agent.readInitialStateFromFile(fc.getSelectedFile()));
                 buttonSolve.setEnabled(true);
                 buttonShowSolution.setEnabled(false);
                 buttonReset.setEnabled(false);
+                
+                puzzleName = fc.getName(fc.getSelectedFile()).replaceAll(".txt", "");
             }
         } catch (IOException e1) {
             e1.printStackTrace(System.err);
         } catch (NoSuchElementException e2) {
             JOptionPane.showMessageDialog(this, "File format not valid", "Error!", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
 
     public void comboBoxSearchMethods_ActionPerformed(ActionEvent e) {
@@ -191,7 +196,7 @@ public class MainFrame extends JFrame {
             public void done() {
                 if (!agent.hasBeenStopped()) {
                     long currentTime = System.currentTimeMillis() - initialTime;
-                    agent.saveSearchReportToFile(currentTime);
+                    agent.saveSearchReportToFile(currentTime, puzzleName);
                     textArea.setText(agent.getSearchReport());
                     if (agent.hasSolution()) {
                         buttonShowSolution.setEnabled(true);

@@ -1,7 +1,17 @@
 
-	Processor: Pentium(R) CPU        P6000  @ 1.87GHz, 2 Core(s), 4.0 GB RAM
+	Pentium(R) CPU        P6000  @ 1.87GHz, 2 Core(s), 4.0 GB RAM
 	Windows 10 amd64
 	Java Platform API Specification 1.8
 
 Algorithm	Solution Cost	Num of Expanded Nodes	Max Frontier Size	Num of generated nodes	Time of Execution (Millis)	Heuristic	Limit/Beam Size
-Breadth first search	10.0	14494	4651	126663	1531	None	None
+A* Search	10.0	4556	3913	41761	1000	Tiles in front of Car	None
+A* Search	10.0	260	827	2655	63	Distance to Door and Tiles in Front of Car	None
+A* Search	10.0	68	325	733	46	HeuristicNew	None
+A* Search	10.0	260	827	2655	78	Distance to Door and Tiles in Front of Car	None
+A* Search	10.0	68	325	733	47	HeuristicNew	None
+A* Search	10.0	68	325	733	47	HeuristicNew	None
+A* Search	10.0	260	827	2655	46	Distance to Door and Tiles in Front of Car	None
+A* Search	10.0	68	325	733	47	HeuristicNew	None
+A* Search	12.0	3751	5839	32747	329	HeuristicNew2	None
+Breadth first search	10.0	14494	4651	126663	1500	None	None
+Breadth first search	7.0	4779	3615	47950	1078	None	None
