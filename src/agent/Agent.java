@@ -136,9 +136,8 @@ public class Agent<E extends State> {
         } else {
             sb.append("None\tNone");
         }
-        
         sb.append("\n");
 
-        appendToTextFile("Statistics.xls", sb.toString());
+        appendToTextFile(fileName, sb.toString());
     }
 }
