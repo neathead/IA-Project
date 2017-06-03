@@ -3,6 +3,7 @@ package agent;
 import java.util.ArrayList;
 import searchmethods.*;
 import static utils.FileOperations.appendToTextFile;
+import static utils.FileOperations.createNecessaryDirectories;
 import static utils.FileOperations.createStatisiticsHeaderFile;
 import static utils.FileOperations.fileExist;
 
@@ -108,9 +109,10 @@ public class Agent<E extends State> {
     }
     
     public void saveSearchReportToFile(long time, String puzzleName) {
-        String fileName = "Statistics_"+puzzleName+".xls";
+        String fileName = "Statistics\\Statistics_"+puzzleName+".xls";
         if (!fileExist(fileName)){
-            createStatisiticsHeaderFile(fileName);
+            if (createNecessaryDirectories(fileName))
+                createStatisiticsHeaderFile(fileName);
         }
         
         StringBuilder sb = new StringBuilder();

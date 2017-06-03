@@ -1,20 +1,12 @@
 package utils;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.FileImageOutputStream;
-import javax.management.*;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
@@ -68,14 +60,14 @@ public class FileOperations {
      * @param fileName text file name.
      * @param string string to be appended.
      */
-    public static void appendToTextFile(String fileName, String string){
+    public static void appendToTextFile(String fileName, String string) {
         BufferedWriter w = null;
         try {
             w = new BufferedWriter(new FileWriter(fileName, true));
             w.write(string);
 
         } catch (Exception e) {
-            System.err.println("Error: " + e);
+            System.err.println("Error on line: " + e);
         } finally {
             try {
                 if (w != null){
@@ -84,6 +76,12 @@ public class FileOperations {
             } catch (IOException ignore) {
             }
         }
+    }
+    
+    public static boolean createNecessaryDirectories(String fileName) {
+        File f = new File(fileName);
+        f.mkdirs();
+        return f.delete();
     }
     
     public static boolean fileExist(String fileName){
@@ -95,32 +93,5 @@ public class FileOperations {
         Sigar sigar = new Sigar();
         org.hyperic.sigar.CpuInfo[] cpuInfoList = sigar.getCpuInfoList();
         return cpuInfoList[0].getModel();
-    }
-    
-    public static void saveImage(String fileName, BufferedImage renderedImage){
-        // Find a jpeg writer
-        ImageWriter writer = null;
-        Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpg");
-        if (iter.hasNext()) {
-            writer = (ImageWriter) iter.next();
-        }
-
-        //Defining compression level
-        ImageWriteParam iwp = writer.getDefaultWriteParam();
-        iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-        iwp.setCompressionQuality(1);
-
-        try {
-            // Prepare output file
-            File outFile = new File(fileName);
-            FileImageOutputStream output = new FileImageOutputStream(outFile);
-
-            //write the image
-            writer.setOutput(output);
-            IIOImage imageIIO = new IIOImage(renderedImage, null, null);
-            writer.write(null, imageIIO, iwp);
-
-        } catch (IOException ex) {
-        }        
     }
 }

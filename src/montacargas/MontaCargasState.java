@@ -346,7 +346,7 @@ public class MontaCargasState extends State implements Cloneable {
         
         for (int i = columnCarro + 1; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
-                h += matrix[j][i];
+                h += matrix[j][i]; //if (matrix[j][i] != 0) h++; This is not what I want (TRUST ME)
             }
         }
         
