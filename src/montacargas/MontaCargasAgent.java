@@ -17,9 +17,10 @@ public class MontaCargasAgent extends Agent<MontaCargasState>{
         heuristics.add(new HeuristicTilesInFrontOfCar());
         heuristics.add(new HeuristicCarDistance());
         heuristics.add(new HeuristicCarDistancePlusTilesInFront());
-        
         heuristics.add(new HeuristicCarDistancePlusTilesSizeInFront());
-        heuristics.add(new HeuristicNew2());
+        heuristics.add(new HeuristicAllTilesInFrontOfCarIndividualy());
+        heuristics.add(new HeuristicAllCombine());
+        heuristics.add(new HeuristicAllCombineAjusted());
         
         heuristic = heuristics.get(0); 
     }

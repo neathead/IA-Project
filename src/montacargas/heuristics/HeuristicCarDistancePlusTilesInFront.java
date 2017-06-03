@@ -7,7 +7,7 @@ import montacargas.MontaCargasState;
 public class HeuristicCarDistancePlusTilesInFront extends Heuristic<MontaCargasProblem, MontaCargasState> {
 
     public double compute(MontaCargasState state) {
-        return state.computeCarDistancePlusTilesInFront();
+        return state.computeCarDistance() + state.computeTilesInFrontOfCar();
     }
 
     @Override

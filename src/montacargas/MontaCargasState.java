@@ -73,6 +73,25 @@ public class MontaCargasState extends State implements Cloneable {
             }
         }
     }
+    
+    public MontaCargasState(int[][] matrix, LinkedList<Peca> pecas) {
+        this.pecas = new LinkedList<Peca>();
+        this.matrix = new int[matrix.length][matrix.length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                this.matrix[i][j] = matrix[i][j];
+                if (this.matrix[i][j] == 1) {
+                    linhaCarro = i;
+                    columnCarro = j;
+                }
+            }
+        }
+        
+        for (Peca peca : pecas) {
+            this.pecas.add(peca.clone());
+        }
+    }
 
     public boolean canMoveLeft(Peca peca) { //Horizontais
         if (peca.getColuna() - 1 >= 0) { //Não pode ir para fora
@@ -253,7 +272,7 @@ public class MontaCargasState extends State implements Cloneable {
 
     @Override
     public Object clone() {
-        return new MontaCargasState(matrix);
+        return new MontaCargasState(matrix, pecas);
     }
 
     @Override
@@ -312,10 +331,8 @@ public class MontaCargasState extends State implements Cloneable {
         return h;
     }
 
-    public double computeCarDistancePlusTilesSizeInFront() {
+    public double computeSizeOfTilesInFrontOfCar() {
         double h = 0;
-        
-        h += computeCarDistance();
         
         for (int j = columnCarro + 1; j < matrix.length; j++) {
             h+=matrix[linhaCarro][j];
@@ -323,21 +340,41 @@ public class MontaCargasState extends State implements Cloneable {
         
         return h;   
     }
+    
+    public double computeAllTilesInFrontOfCarIndividualy() {
+        double h = 0;
+        
+        for (int i = columnCarro + 1; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                h += matrix[j][i];
+            }
+        }
+        
+        return h;   
+    }
 
-    public double computeNew2() {
+    public double computeAllHeuristicTogether() {
         double h = 0;
         
         h += computeCarDistance();
         h += computeTilesInFrontOfCar();
-        h += computeCarDistancePlusTilesSizeInFront();
+        h += computeSizeOfTilesInFrontOfCar();
         
-        for (int j = columnCarro + 1; j < matrix.length; j++) {
-            if (matrix[linhaCarro][j] != 0) {
-                for (int k = 0; k < matrix.length; k++) {
-                    h += matrix[j][k];
-                }
-            }
-        }
+        h += computeAllTilesInFrontOfCarIndividualy();
+        
+        return h;   
+    }
+    
+        public double computeAllHeuristicTogetherAjusted() {
+        double h = 0;
+        
+        h += computeCarDistance();
+        h += computeTilesInFrontOfCar();
+        h += computeSizeOfTilesInFrontOfCar();
+        
+        h *= h; //Magic Formula
+        
+        h += computeAllTilesInFrontOfCarIndividualy();
         
         return h;   
     }

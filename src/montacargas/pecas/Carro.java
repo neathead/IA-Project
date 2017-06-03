@@ -12,4 +12,9 @@ public class Carro extends Peca {
         actions.add(new ActionRight(this));
         actions.add(new ActionLeft(this));
     }
+    
+    @Override
+    public Peca clone() {
+        return new Carro(linha, coluna);
+    }
 }

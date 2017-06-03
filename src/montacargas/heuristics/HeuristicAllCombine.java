@@ -9,14 +9,14 @@ import agent.Heuristic;
 import montacargas.MontaCargasProblem;
 import montacargas.MontaCargasState;
 
-public class HeuristicNew2 extends Heuristic<MontaCargasProblem, MontaCargasState> {
+public class HeuristicAllCombine extends Heuristic<MontaCargasProblem, MontaCargasState> {
 
     public double compute(MontaCargasState state) {
-        return state.computeNew2();
+        return state.computeAllHeuristicTogether();
     }
 
     @Override
     public String toString() {
-        return "HeuristicNew2";
+        return "All Heuristic Combined";
     }
 }

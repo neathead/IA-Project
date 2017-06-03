@@ -3,6 +3,43 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/ActionDown.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca7.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/utils/NodeCollection.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/heuristics/HeuristicCarDistancePlusTilesInFront.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca4.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/IterativeDeepeningSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/heuristics/HeuristicCarDistancePlusTilesSizeInFront.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/utils/Posicao.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/BreadthFirstSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/AStarSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca6.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/utils/FileOperations.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca3.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/InformedSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/utils/NodePriorityQueue.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/MontaCargasState.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/heuristics/AllCombineRedundantPlusAllPiecesInFront.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/agent/Agent.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/DepthLimitedSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/GreedyBestFirstSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca9.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/MontaCargasProblem.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/GraphSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/gui/MainFrame.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/DepthFirstSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca2.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/MontaCargasAgent.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/MontaCargasEvent.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca5.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Carro.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/IDAStarSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/agent/Problem.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/utils/NodeLinkedList.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/searchmethods/BeamSearch.java</file>
+            <file>file:/C:/Users/luis/Desktop/Inteligência%20Artificial/Aulas%20Práticas/Projeto%20Final/MONTA-CARGAS/src/montacargas/pecas/Peca8.java</file>
+        </group>
     </open-files>
 </project-private>

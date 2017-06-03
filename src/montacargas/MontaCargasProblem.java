@@ -10,7 +10,6 @@ public class MontaCargasProblem extends Problem<MontaCargasState> {
     
     public MontaCargasProblem(MontaCargasState initalState) {
         super(initalState, new ArrayList<Action>());
-        
     }
 
     public List<MontaCargasState> executeActions(MontaCargasState state) {

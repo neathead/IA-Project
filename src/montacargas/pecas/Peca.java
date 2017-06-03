@@ -4,7 +4,7 @@ import agent.Action;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Peca {
+public abstract class Peca implements Cloneable {
     protected int linha, coluna;
     protected int tamnho;
     protected LinkedList<Action> actions = new LinkedList<Action>();
@@ -59,5 +59,6 @@ public class Peca {
         return true;
     }
     
-    
+    @Override
+    public abstract Peca clone();
 }

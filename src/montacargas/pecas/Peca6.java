@@ -12,4 +12,9 @@ public class Peca6 extends Peca {
         actions.add(new ActionRight(this));
         actions.add(new ActionLeft(this));
     }
+    
+        @Override
+    public Peca clone() {
+        return new Peca6(linha, coluna);
+    }
 }
