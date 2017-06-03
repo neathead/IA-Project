@@ -29,6 +29,6 @@ public class UniformCostSearch extends GraphSearch<NodePriorityQueue> {
 
     @Override
     public String toString() {
-        return "Uniform cost search";
+        return "Uniform Cost Search";
     }
 }

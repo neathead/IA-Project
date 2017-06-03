@@ -20,6 +20,6 @@ public class BreadthFirstSearch extends GraphSearch<NodeLinkedList> {
 
     @Override
     public String toString() {
-        return "Breadth first search";
+        return "Breadth First Search";
     }
 }

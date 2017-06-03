@@ -24,6 +24,6 @@ public class GreedyBestFirstSearch extends InformedSearch {
 
     @Override
     public String toString() {
-        return "Greedy best first search";
+        return "Greedy Best First Search";
     }
 }

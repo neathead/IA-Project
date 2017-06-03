@@ -55,6 +55,6 @@ public class IterativeDeepeningSearch extends DepthFirstSearch {
 
     @Override
     public String toString() {
-        return "Iterative deepening search";
+        return "Iterative Deepening Search";
     }
 }

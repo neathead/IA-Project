@@ -46,6 +46,6 @@ public class DepthFirstSearch extends GraphSearch<NodeLinkedList> {
 
     @Override
     public String toString() {
-        return "Depth first search";
+        return "Depth First Search";
     }
 }

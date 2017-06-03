@@ -38,6 +38,6 @@ public class BeamSearch extends AStarSearch {
 
     @Override
     public String toString() {
-        return "Beam search";
+        return "Beam Search";
     }
 }
