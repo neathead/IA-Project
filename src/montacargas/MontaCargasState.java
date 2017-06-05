@@ -137,7 +137,7 @@ public class MontaCargasState extends State implements Cloneable {
      * Doing the verification in these methods would imply that a clone of the
      * state was created whether the operation could be executed or not.
      */
-    public void moveLeft(Peca peca) { //Horizontais [][x][x][x][][][]
+    public void moveLeft(Peca peca) { //Horizontais [][][][][][][]
         matrix[peca.getLinha()][peca.getColuna() - 1]
                 = matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1];
         matrix[peca.getLinha()][peca.getColuna()+peca.getTamnho()-1] = 0;
