@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Peca implements Cloneable {
     protected int linha, coluna;
-    protected int tamnho;
+    protected int tamanho;
     protected LinkedList<Action> actions = new LinkedList<Action>();
 
     public Peca(int linha, int coluna) {
@@ -23,7 +23,7 @@ public abstract class Peca implements Cloneable {
     }
 
     public int getTamnho() {
-        return tamnho;
+        return tamanho;
     }
 
     public int getLinha() {

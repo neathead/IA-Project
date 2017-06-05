@@ -7,7 +7,7 @@ public class Peca7 extends Peca {
 
     public Peca7(int i, int j) {
         super(i, j);
-        tamnho = 3;
+        tamanho = 3;
         
         actions.add(new ActionUp(this));
         actions.add(new ActionDown(this));
